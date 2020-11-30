@@ -15,7 +15,6 @@ const list_items = [
   "Item 14",
   "Item 15",
   "Item 16",
-  "Item 17",
 ];
 
 const list_element = document.getElementById("list");
@@ -27,7 +26,7 @@ let rows = 5;
 function DispayList(items, wrapper, rows_per_page, page) {
   wrapper.innerHTML = "";
   page--;
-
+  // --- items-display --- //
   let start = rows_per_page * page;
   let end = start + rows_per_page;
   let items_in_page = items.slice(start, end);
@@ -36,12 +35,32 @@ function DispayList(items, wrapper, rows_per_page, page) {
     let item = items_in_page[i];
 
     let item_element = document.createElement("div");
-    item_element.classList.add("item")
+    item_element.classList.add("item");
     item_element.innerText = item;
 
-    wrapper.appendChild(item_element)
+    wrapper.appendChild(item_element);
+  }
+}
+// --- pagination area --- //
+function SetupPagination(items, wrapper, rows_per_page) {
+  wrapper.innerHTML = "";
+  let page_count = Math.ceil(items.length / rows_per_page);
+  for (let i = 1; i < page_count + 1; i++) {
+    let btn = PaginationButton(i);
+    wrapper.appendChild(btn);
   }
 }
 
+function PaginationButton(page) {
+  let button = document.createElement("button");
+  button.innerText = page;
+
+  if (current_page == page) button.classList.add("active");
+
+  return button;
+}
+
 // test function
-DispayList(list_items, list_element, 5, current_page);
+DispayList(list_items, list_element, rows, current_page);
+
+SetupPagination(list_items, pagination_element, rows);
