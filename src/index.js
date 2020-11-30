@@ -21,11 +21,11 @@ const list_items = [
 const list_element = document.getElementById("list");
 const pagination_element = document.getElementById("pagination");
 
-let current_page = 3;
+let current_page = 1;
 let rows = 5;
 
 function DispayList(items, wrapper, rows_per_page, page) {
-  wrapper.innerHTML = "this is the list element";
+  wrapper.innerHTML = "";
   page--;
 
   let start = rows_per_page * page;
@@ -37,6 +37,9 @@ function DispayList(items, wrapper, rows_per_page, page) {
 
     let item_element = document.createElement("div");
     item_element.classList.add("item")
+    item_element.innerText = item;
+
+    wrapper.appendChild(item_element)
   }
 }
 
