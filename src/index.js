@@ -46,16 +46,21 @@ function SetupPagination(items, wrapper, rows_per_page) {
   wrapper.innerHTML = "";
   let page_count = Math.ceil(items.length / rows_per_page);
   for (let i = 1; i < page_count + 1; i++) {
-    let btn = PaginationButton(i);
+    let btn = PaginationButton(i, items);
     wrapper.appendChild(btn);
   }
 }
 
-function PaginationButton(page) {
+function PaginationButton(page, items) {
   let button = document.createElement("button");
   button.innerText = page;
 
   if (current_page == page) button.classList.add("active");
+
+  button.addEventListener("click", function () {
+      current_page = page;
+      DispayList(items, list_element, rows, current_page)
+  })
 
   return button;
 }
