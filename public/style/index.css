@@ -60,6 +60,7 @@ main .list .item:hover {
   appearance: none;
   border: none;
   cursor: pointer;
+  
 
   background-color: rgb(58, 58, 58);
 
@@ -69,7 +70,6 @@ main .list .item:hover {
   color: #ffffff;
   font-size: 25px;
   border-radius: 15%;
-
 }
 
 .pagination button:hover {
@@ -78,5 +78,4 @@ main .list .item:hover {
 
 .pagination button.active {
   background-color: rgb(0, 0, 0);
-  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
