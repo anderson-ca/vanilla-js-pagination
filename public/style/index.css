@@ -43,7 +43,7 @@ main .list .item:last-of-type {
 }
 
 main .list .item:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.01);
 }
 
 .pagination {

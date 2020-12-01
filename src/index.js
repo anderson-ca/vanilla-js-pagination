@@ -15,6 +15,71 @@ const list_items = [
   "Item 14",
   "Item 15",
   "Item 16",
+  "Item 17",
+  "Item 18",
+  "Item 19",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+  "Item 11",
+  "Item 12",
+  "Item 13",
+  "Item 14",
+  "Item 15",
+  "Item 16",
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+  "Item 11",
+  "Item 12",
+  "Item 13",
+  "Item 14",
+  "Item 15",
+  "Item 16",
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+  "Item 11",
+  "Item 12",
+  "Item 13",
+  "Item 14",
+  "Item 15",
+  "Item 16",
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+  "Item 11",
+  "Item 12",
+  "Item 13",
+  "Item 14",
+  "Item 15",
+  "Item 16",
+  "Item 16",
 ];
 
 const list_element = document.getElementById("list");
@@ -45,10 +110,58 @@ function DispayList(items, wrapper, rows_per_page, page) {
 function SetupPagination(items, wrapper, rows_per_page) {
   wrapper.innerHTML = "";
   let page_count = Math.ceil(items.length / rows_per_page);
+
+  // --- create left arrow button
+  let go_left = document.createElement("button");
+  go_left.innerHTML = "&laquo";
+
+  go_left.addEventListener("click", function () {
+    let next_page = current_page - 1;
+
+    if (next_page < 1) {
+      next_page = 1;
+    }
+
+    DispayList(items, list_element, rows, next_page);
+    let next_button = document.getElementsByTagName("button")[next_page];
+
+    document
+      .querySelector(".pagination button.active")
+      .classList.remove("active");
+
+    current_page = next_page;
+    next_button.classList.add("active");
+  });
+
+  wrapper.appendChild(go_left);
   for (let i = 1; i < page_count + 1; i++) {
     let btn = PaginationButton(i, items);
     wrapper.appendChild(btn);
   }
+
+  // --- create right arrow button
+  let go_right = document.createElement("button");
+  go_right.innerHTML = "&raquo";
+
+  go_right.addEventListener("click", function () {
+    let next_page = current_page + 1;
+
+    if (next_page > page_count) {
+      next_page = page_count;
+    }
+
+    DispayList(items, list_element, rows, next_page);
+    let buttons = document.getElementsByTagName("button");
+
+    document
+      .querySelector(".pagination button.active")
+      .classList.remove("active");
+
+    current_page = next_page;
+    buttons[next_page].classList.add("active");
+  });
+
+  wrapper.appendChild(go_right);
 }
 
 function PaginationButton(page, items) {
